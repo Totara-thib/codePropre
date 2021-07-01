@@ -6,23 +6,20 @@ package ex2;
 public class CompteBancaire {
 
 	/** solde : solde du compte */
-	private double solde;
+	private Double solde;
 	
 	/** decouvert : un découvert est autorisé seulement pour les comptes courants */
-	private double decouvert;
-	
-	/** tauxRemuneration : taux de rémunération dans le cas d'un livret A */
-	private double tauxRemuneration;
+	private Double decouvert;
 	
 	/** Le type vaut soit CC=Compte courant, ou soit LA=Livret A */
 	private String type;
 	
 	/**
-	 * @param solde
-	 * @param decouvert
-	 * @param type
+	 * @param type est un String
+	 * @param solde est un Double
+	 * @param decouvert est un Double
 	 */
-	public CompteBancaire(String type, double solde, double decouvert) {
+	public CompteBancaire(String type, Double solde, Double decouvert) {
 		super();
 		this.type = type;
 		this.solde = solde;
@@ -30,16 +27,19 @@ public class CompteBancaire {
 	}
 	
 	/** Ajoute un montant au solde
-	 * @param montant
+	 * @param montant est un Double
 	 */
-	public void ajouterMontant(double montant){
+	public void ajouterMontant(Double montant){
 		this.solde += montant;
 	}
 	
-	/** Ajoute un montant au solde
-	 * @param montant
+	/** Débite un montant donné a la solde du compte.
+	 ** 
+	 * Si la solde du Compte bancaire moins le montant débité 
+	 * est supérieur au découvert autorisé
+	 * @param montant est un Double
 	 */
-	public void debiterMontant(double montant){
+	public void debiterMontant(Double montant){
 		if (type.equals("CC")){
 			if (this.solde - montant > decouvert){
 				this.solde = solde - montant;
@@ -52,71 +52,41 @@ public class CompteBancaire {
 		}
 	}
 	
-	public void appliquerRemuAnnuelle(){
-		if (type.equals("LA")){
-			this.solde = solde + solde*tauxRemuneration/100;
-		}
-	}
 	
-	/** Ce constructeur est utilisé pour créer un compte de type Livret A
-	 * @param type = LA
-	 * @param solde représente le solde du compte
-	 * @param decouvert  représente le découvert autorisé
-	 * @param tauxRemuneration  représente le taux de rémunération du livret A
+	/** Getter pour solde
+	 * @return le solde
 	 */
-	public CompteBancaire(String type, double solde, double decouvert, double tauxRemuneration) {
-		super();
-		this.type = type;
-		this.solde = solde;
-		this.decouvert = decouvert;
-		this.tauxRemuneration = tauxRemuneration;
-	}
-	
-	/** Getter for solde
-	 * @return the solde
-	 */
-	public double getSolde() {
+	public Double getSolde() {
 		return solde;
 	}
 	
-	/** Setter
-	 * @param solde the solde to set
+	/** Setter permet de modifier le solde du compte
+	 * @param solde est un Double
 	 */
-	public void setSolde(double solde) {
+	public void setSolde(Double solde) {
 		this.solde = solde;
 	}
-	/** Getter for decouvert
-	 * @return the decouvert
+	/** Getter pour decouvert
+	 * @return le decouvert
 	 */
-	public double getDecouvert() {
+	public Double getDecouvert() {
 		return decouvert;
 	}
-	/** Setter
-	 * @param decouvert the decouvert to set
+	/** Setter permet de modifier le découvert du compte
+	 * @param decouvert est un Double 
 	 */
-	public void setDecouvert(double decouvert) {
+	public void setDecouvert(Double decouvert) {
 		this.decouvert = decouvert;
 	}
-	/** Getter for tauxRemuneration
-	 * @return the tauxRemuneration
-	 */
-	public double getTauxRemuneration() {
-		return tauxRemuneration;
-	}
-	/** Setter
-	 * @param tauxRemuneration the tauxRemuneration to set
-	 */
-	public void setTauxRemuneration(double tauxRemuneration) {
-		this.tauxRemuneration = tauxRemuneration;
-	}
-	/** Getter for type
-	 * @return the type
+
+	/** Getter pour type
+	 * @return le type du compte (CC ou LA)
 	 */
 	public String getType() {
 		return type;
 	}
-	/** Setter
-	 * @param type the type to set
+	/** Setter  permet de modifier le type du compte
+	 * @param type est un String
 	 */
 	public void setType(String type) {
 		this.type = type;

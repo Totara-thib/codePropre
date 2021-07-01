@@ -6,6 +6,7 @@ public class Zoo {
 	private SavaneAfricaine savaneAfricaine;
 	private ZoneCarnivore zoneCarnivore;
 	private FermeReptile fermeReptile;
+	private Zone zone;
 	private Aquarium aquarium;
 	
 	public Zoo(String nom){
